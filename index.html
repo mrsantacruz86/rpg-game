@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hangman Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custon CSS and JS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+
+<body>
+    
+        <div class="jumbotron">
+            <div id="logo" ><img src="images/star-hangman.png" class="reponsive-image" alt="Star Hangman"></div>
+        </div>
+    <div class="container">
+        <div class="row">
+
+            <aside class="col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div>Wins:</div>
+                        <div id="score">0</div>
+                        <br>
+                        <div>Remaining Chances: <span id="chances">5</span></div>                        
+                        <div>Letters already guessed: <span id="guessed"></span></div>
+                        
+                        <br>
+
+                        <button type="button" class="btn btn-warning btn-lg" onclick="startGame()">New Game</button>
+
+                    </div>
+                </div>
+            </aside>
+
+            <section class="col-md-7">
+            	<div class="panel panel-default">
+            		<div class="panel-body">
+            			<h3 class="instructions">Press a letter to start guessing...</h3>
+		                <br><br>
+		                <div id="cWord"></div>
+
+            		</div>
+	                
+				</div>
+            </section>
+
+        </div>
+    </div>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
