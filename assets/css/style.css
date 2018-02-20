@@ -13,17 +13,44 @@ body{
 .playground{
 	width: 100%;
 }
-.all-cards-area{
-
+.avatar{
+	width: 100px;
+	height: 150px;
+	background: #000;
+	color: white;
+	display: inline-block;
+	margin-right: 20px;
+	border: 2px solid #fff;
+	font-size: 12px;
 }
-.selected-area{
+.avatar img{
+	height: 100px;
+}
+.avatar:hover{
+	cursor: pointer;
+	transition: background-color .2 ease-in-out;
+	background-color: #fff;
+	transition: color .2 ease-in-out;
+	color: #000;
+	transition: border .2 ease-in-out;
+	border-color: #000;
+}
+.avatar-name, .avatar-hp{
+	margin: 0 auto;
+}
 
+.remaining-enemies{
+	background-color: #242577;
+	border: #fff;
+	height: 200px;
 }
 .selected-card{
-
+	background-color: #2f8636;
+	color: #fff;
 }
 .enemy-card{
-	
+	background-color: #af2020;
+	color: #fff;
 }
 .defender-area{
 	
@@ -31,13 +58,7 @@ body{
 .game-section{
 	
 }
-.avatar{
-	width: 150px;
-	background: #000;
-	color: white;
-	
-	
-}
+
 .avatar img{
 	width: 100%;
 }
