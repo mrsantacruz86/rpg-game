@@ -1,5 +1,5 @@
 // Script for the Star Wars RPG!
-$(function() {
+$(document).ready(function() {
     // Handler for .ready() called.
     //Avatar object declaration
     var yoda = {
@@ -9,6 +9,7 @@ $(function() {
         attackPower: 0,
         counterAttackPower: 8,
         attack: function (defender) {
+            defender.hp -= this.attackPower;
             this.attackPower += this.counterAttackPower;
             this.hp -= defender.damage;
         },
@@ -52,7 +53,8 @@ $(function() {
     }
     //Array of objects containing all the characters
     var avatarList = [yoda,luke,maul,vader];
-
+    
+    
     //Create avatars
     function createAvatar(avatar, place) {
         var card = $("<div>");
@@ -64,8 +66,9 @@ $(function() {
         place.append(card);
         
     }
-    avatarList.forEach(element => {
-        createAvatar(element,$("all-card-area"));
+    //Populate character's list
+    $.each(avatarList, function(i, element) {
+        createAvatar(element,$(".characters"));
     });
 
 });
