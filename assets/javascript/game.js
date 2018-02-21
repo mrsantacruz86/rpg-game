@@ -99,8 +99,7 @@ $(document).ready(function() {
         if(!myAvatar){
             myAvatar = $(this).data('data');
             $(this).removeClass('character').addClass('selected-card');
-            // $('.character').removeClass('character').addClass('remaining-card');
-            $(this).appendTo($('.enemy-space'));
+            $(this).appendTo($('.mySpace'));
         }
         else {
             defender = $(this).data('data');
@@ -109,9 +108,34 @@ $(document).ready(function() {
         }
     });
     $('#attackBtn').click(function (){
-        myAvatar.attack(defender);
-        refreshHP();
+        var remainingDefenders = 3;
+        if (remainingDefenders > 0) {
+            myAvatar.attack(defender);
+            refreshHP();
+            if (myAvatar.hp <= 0 ) {
+                $('#attack-detail').text('You have been defeated...GAME OVER!');
+            }
+            else{
+                if (defender.hp <= 0) {
+                    $('.enemy-card').remove();
+                    defender = null;
+                    remainingDefenders --;
+                }
+                else{
+                    $('#attack-detail').html('You attacked ' + defender.name + ' for ' + myAvatar.attackPower + ' damage.</br>');
+                    $('#attack-detail').append(defender.name + ' attacked you back for ' + defender.counterAttackPower + ' damage.')
+    
+                }
+            }
+            
+        }
+        else{
+            $('#attack-detail').text('You Won!...GAME OVER!');
+        }
     });
+    $('#restartBtn').click(function () {
+        location.reload();
+    })
     
 });
 

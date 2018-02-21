@@ -19,7 +19,7 @@ body{
 	background: #000;
 	color: white;
 	display: inline-block;
-	margin-right: 20px;
+	margin: 10px;
 	border: 2px solid #fff;
 	font-size: 12px;
 }
@@ -39,10 +39,6 @@ body{
 	margin: 0 auto;
 }
 
-.enemy-space{
-	background-color: #242577;
-	border: #fff;
-}
 .selected-card{
 	background-color: #2f8636;
 	color: #fff;
@@ -51,8 +47,11 @@ body{
 	background-color: #af2020;
 	color: #fff;
 }
-.defender-area{
-	/* background-color: #772424;
-	border: #fff;
-	height: 200px; */
+#attackBtn, #restartBtn{
+	width: 100px;
+	margin: 10px;
+}
+#attack-detail{
+	background: #00000086;
+	color: #fff;
 }
