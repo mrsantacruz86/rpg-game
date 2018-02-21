@@ -39,10 +39,9 @@ body{
 	margin: 0 auto;
 }
 
-.remaining-enemies{
+.enemy-space{
 	background-color: #242577;
 	border: #fff;
-	height: 200px;
 }
 .selected-card{
 	background-color: #2f8636;
@@ -53,12 +52,7 @@ body{
 	color: #fff;
 }
 .defender-area{
-	
-}
-.game-section{
-	
-}
-
-.avatar img{
-	width: 100%;
+	background-color: #772424;
+	border: #fff;
+	height: 200px;
 }
