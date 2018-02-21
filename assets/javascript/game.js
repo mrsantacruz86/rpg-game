@@ -62,7 +62,9 @@ var vader = {
 var avatarList = [yoda, luke, maul, vader];
 
 //Functions to end and reset the game
-
+function startGame(params) {
+    
+}
 
 //Functions to refresh HP
 
@@ -73,21 +75,19 @@ function refreshHP() {
     })
 }
 
-
-
 // Script for the DOM Manipulation 
 $(document).ready(function() {
     // Handler for .ready() called.  
     
     //Create avatars
     function createAvatar(avatar, place) {
-        var $card = $(`<div id="character-${avatar.id}">`); 
-        $card.addClass("avatar character thumbnail");
-        $card.data('data',avatar);
-        $card.append("<div class = 'avatar-name'>" + avatar.name + "</div>");
-        $card.append("<img src='assets/images/" + avatar.picture + "'></img>");
-        $card.append("<div class = 'avatar-hp'>" + avatar.hp + "</div>");
-        place.append($card);
+        var card = $(`<div id="character-${avatar.id}">`); 
+        card.addClass("avatar character thumbnail");
+        card.data('data',avatar);
+        card.append("<div class = 'avatar-name'>" + avatar.name + "</div>");
+        card.append("<img src='assets/images/" + avatar.picture + "'></img>");
+        card.append("<div class = 'avatar-hp'>" + avatar.hp + "</div>");
+        place.append(card);
         
     }
     //Populate character's list
@@ -108,15 +108,10 @@ $(document).ready(function() {
             $(this).appendTo(".defender-area");
         }
     });
-    // $('.remaining-card').click(function(){
-    //     $(this).removeClass('remaining-card').addClass('enemy-card');
-    //     $(this).appendTo($('.defender-area'));
-    // });
     $('#attackBtn').click(function (){
         myAvatar.attack(defender);
         refreshHP();
     });
-    $.
-
+    
 });
 
