@@ -14,19 +14,21 @@ function Character(id, name, picture, hp, attackPower, counterAttackPower,) {
         this.hp -= enemy.counterAttackPower;
     }
 }
-function createCaracters(){
+function createCaracter(){
     yoda = new Character(0, "Yoda", "yoda.jpg", 120, 0, 8);
     luke = new Character(1, "Luke Skywalker", "luke.jpg", 100, 0, 6);
     maul = new Character(2, "Darth Maul", "maul.jpg", 150, 0, 15);
     vader = new Character(3, "Darth Vader", "vader.jpg", 180, 0, 20);
 }
+//Functions to end and reset the game
+function startGame() {
+    createCaracter();
+}
+//Calling the startGame() function
+startGame();
+
 //Array of objects containing all the characters
 var avatarList = [yoda, luke, maul, vader];
-
-//Functions to end and reset the game
-function startGame(params) {
-    createCaracters();
-}
 
 //Functions to refresh HP
 function refreshHP() {
@@ -38,7 +40,7 @@ function refreshHP() {
 
 // Script for the DOM Manipulation 
 $(document).ready(function() {
-    // Handler for .ready() called.  
+
     //Create avatars
     function createAvatar(avatar, place) {
         var card = $(`<div id="character-${avatar.id}">`); 
