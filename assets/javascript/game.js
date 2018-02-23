@@ -14,24 +14,21 @@ function Character(id, name, picture, hp, attackPower, counterAttackPower,) {
         this.hp -= enemy.counterAttackPower;
     }
 }
-function createCaracter(){
+function createCaracters(){
     yoda = new Character(0, "Yoda", "yoda.jpg", 120, 0, 8);
     luke = new Character(1, "Luke Skywalker", "luke.jpg", 100, 0, 6);
     maul = new Character(2, "Darth Maul", "maul.jpg", 150, 0, 15);
     vader = new Character(3, "Darth Vader", "vader.jpg", 180, 0, 20);
 }
-createCaracter();
-
 //Array of objects containing all the characters
 var avatarList = [yoda, luke, maul, vader];
 
 //Functions to end and reset the game
 function startGame(params) {
-    
+    createCaracters();
 }
 
 //Functions to refresh HP
-
 function refreshHP() {
     avatarList.forEach(function(avatar) {
         var $avatarCard = $(`#character-${avatar.id}`);
@@ -42,7 +39,6 @@ function refreshHP() {
 // Script for the DOM Manipulation 
 $(document).ready(function() {
     // Handler for .ready() called.  
-    
     //Create avatars
     function createAvatar(avatar, place) {
         var card = $(`<div id="character-${avatar.id}">`); 
@@ -51,9 +47,9 @@ $(document).ready(function() {
         card.append("<div class = 'avatar-name'>" + avatar.name + "</div>");
         card.append("<img src='assets/images/" + avatar.picture + "'></img>");
         card.append("<div class = 'avatar-hp'>" + avatar.hp + "</div>");
-        place.append(card);
-        
+        place.append(card);   
     }
+
     //Populate character's list
     $.each(avatarList, function(i, element) {
         createAvatar(element, $(".characters"));
@@ -87,11 +83,9 @@ $(document).ready(function() {
                 }
                 else{
                     $('#attack-detail').html('You attacked ' + defender.name + ' for ' + myAvatar.attackPower + ' damage.</br>');
-                    $('#attack-detail').append(defender.name + ' attacked you back for ' + defender.counterAttackPower + ' damage.')
-    
+                    $('#attack-detail').append(defender.name + ' attacked you back for ' + defender.counterAttackPower + ' damage.')   
                 }
             }
-            
         }
         else{
             $('#attack-detail').text('You Won!...GAME OVER!');
@@ -99,7 +93,6 @@ $(document).ready(function() {
     });
     $('#restartBtn').click(function () {
         location.reload();
-    })
-    
+    }) 
 });
 
