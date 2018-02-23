@@ -1,63 +1,27 @@
 //Avatar object declaration  
 var myAvatar;
 var defender;
-
-var yoda = {
-    id: 0,
-    name: "Yoda",
-    picture: "yoda.jpg",
-    hp: 120,
-    attackPower: 0,
-    counterAttackPower: 8,
-    attack: function (defender) {
+function Character(id, name, picture, hp, attackPower, counterAttackPower,) {
+    this.id = id;
+    this.name = name;
+    this.picture = picture;
+    this.hp = hp;
+    this.attackPower = attackPower;
+    this.counterAttackPower = counterAttackPower;
+    this.attack = function(enemy){
         this.attackPower += this.counterAttackPower;
-        defender.hp -= this.attackPower;
-        this.hp -= defender.counterAttackPower;
+        enemy.hp -= this.attackPower;
+        this.hp -= enemy.counterAttackPower;
     }
-
 }
-var luke = {
-    id: 1,
-    name: "Luke Skywalker",
-    picture: "luke.jpg",
-    hp: 100,
-    attackPower: 0,
-    counterAttackPower: 10,
-    attack: function (defender) {
-        this.attackPower += this.counterAttackPower;
-        defender.hp -= this.attackPower;
-        this.hp -= defender.counterAttackPower;
-    }
-
+function createCaracter(){
+    yoda = new Character(0, "Yoda", "yoda.jpg", 120, 0, 8);
+    luke = new Character(1, "Luke Skywalker", "luke.jpg", 100, 0, 6);
+    maul = new Character(2, "Darth Maul", "maul.jpg", 150, 0, 15);
+    vader = new Character(3, "Darth Vader", "vader.jpg", 180, 0, 20);
 }
-var maul = {
-    id: 2,
-    name: "Darth Maul",
-    picture: "maul.jpg",
-    hp: 150,
-    attackPower: 0,
-    counterAttackPower: 20,
-    attack: function (defender) {
-        this.attackPower += this.counterAttackPower;
-        defender.hp -= this.attackPower;
-        this.hp -= defender.counterAttackPower;
-    }
+createCaracter();
 
-}
-var vader = {
-    id: 3,
-    name: "Darth Vader",
-    picture: "vader.jpg",
-    hp: 180,
-    attackPower: 0,
-    counterAttackPower: 25,
-    attack: function (defender) {
-        this.attackPower += this.counterAttackPower;
-        defender.hp -= this.attackPower;
-        this.hp -= defender.counterAttackPower;
-    }
-
-}
 //Array of objects containing all the characters
 var avatarList = [yoda, luke, maul, vader];
 
