@@ -1,100 +1,177 @@
-//Avatar object declaration  
+//Avatar object declaration
 var myAvatar;
 var defender;
-function Character(id, name, picture, hp, attackPower, counterAttackPower,) {
-    this.id = id;
-    this.name = name;
-    this.picture = picture;
-    this.hp = hp;
-    this.attackPower = attackPower;
-    this.counterAttackPower = counterAttackPower;
-    this.attack = function(enemy){
-        this.attackPower += this.counterAttackPower;
-        enemy.hp -= this.attackPower;
-        this.hp -= enemy.counterAttackPower;
-    }
-}
-function createCaracter(){
-    yoda = new Character(0, "Yoda", "yoda.jpg", 120, 0, 8);
-    luke = new Character(1, "Luke Skywalker", "luke.jpg", 100, 0, 6);
-    maul = new Character(2, "Darth Maul", "maul.jpg", 150, 0, 15);
-    vader = new Character(3, "Darth Vader", "vader.jpg", 180, 0, 20);
-}
-//Functions to end and reset the game
-function startGame() {
-    createCaracter();
-}
-//Calling the startGame() function
-startGame();
 
 //Array of objects containing all the characters
-var avatarList = [yoda, luke, maul, vader];
+const characterList = [
+  {
+    id: 1,
+    name: 'Yoda',
+    picture: 'yoda.jpg',
+    hp: 120,
+    attackPower: 12,
+    powerIncrement: 8
+  },
+  {
+    id: 2,
+    name: 'Luke Skywalker',
+    picture: 'luke.jpg',
+    hp: 100,
+    attackPower: 6,
+    powerIncrement: 20
+  },
+  {
+    id: 3,
+    name: 'Darth Maul',
+    picture: 'maul.jpg',
+    hp: 150,
+    attackPower: 15,
+    powerIncrement: 12
+  },
+  {
+    id: 4,
+    name: 'Darth Vader',
+    picture: 'vader.jpg',
+    hp: 180,
+    attackPower: 20,
+    powerIncrement: 10
+  }
+];
 
-//Functions to refresh HP
-function refreshHP() {
-    avatarList.forEach(function(avatar) {
-        var $avatarCard = $(`#character-${avatar.id}`);
-        $avatarCard.find('.avatar-hp').text(avatar.hp);
-    })
+const game = {
+  playing: false,
+  selectedCharacter: {},
+  selectedOpponent: {},
+  characterList: [...characterList]
+};
+
+//Function to reset the game
+function restartGame() {
+  game = {
+    playing: false,
+    selectedCharacter: {},
+    selectedOpponent: {},
+    characterList: [...characterList]
+  };
+  renderSelectedCharacters();
 }
 
-// Script for the DOM Manipulation 
+function renderSelectedCharacters() {
+  if (!game.selectedCharacter) {
+    console.log('No Character was selected yet!');
+  } else {
+    console.log(game.selectedCharacter);
+  }
+  if (!game.selectedOpponent) {
+    console.log('No Opponent was selected yet!');
+  } else {
+    console.log(game.selectedOpponent);
+  }
+  console.log(game);
+}
+
+// Select Character
+function selectCharacter(id) {
+  game.selectedCharacter = characterList.filter(item => item.id === id)[0];
+  game.characterList = game.characterList.filter(item => item.id !== id);
+  renderSelectedCharacters();
+  renderCharacterList();
+}
+
+// Select Opponent
+function selectOponent(id) {
+  game.selectedOpponent = characterList.filter(item => item.id === id)[0];
+  game.characterList = game.characterList.filter(item => item.id !== id);
+  renderSelectedCharacters();
+  renderCharacterList();
+}
+//Render the list of Character cards
+const renderCharacterList = () => {
+  $('.thumbnail').remove();
+  game.characterList.map((character, index) => {
+    var card = $(`<div id="character-${character.id}">`);
+    card.addClass('avatar character thumbnail');
+    card.append("<div class = 'avatar-name'>" + character.name + '</div>');
+    card.append("<img src='assets/images/" + character.picture + "'></img>");
+    card.append("<div class = 'avatar-hp'>" + character.hp + '</div>');
+    $('.characters').append(card);
+  });
+};
+
+// Attack
+function attack() {
+  if (!game.selectedCharacter || !game.selectedOpponent) {
+    return console.log('No Character or Oponent Selected');
+  }
+
+  if (game.selectedCharacter.hp > 0) {
+    game.selectedOpponent.hp -= game.selectedCharacter.attackPower;
+    game.selectedCharacter.attackPower += game.selectedCharacter.powerIncrement;
+    game.selectedCharacter.hp -= game.selectedOpponent.attackPower;
+    game.selectedOpponent.attackPower += game.selectedOpponent.powerIncrement;
+  }
+  if (game.selectedCharacter.hp <= 0) {
+    console.log('You are dead!');
+  }
+  if (game.selectedOpponent.hp <= 0) {
+    console.log('You won the fight');
+    game.selectedOpponent = {};
+  }
+  renderSelectedCharacters();
+  renderCharacterList();
+  return console.log(game.selectedCharacter, game.selectedOpponent);
+}
+
 $(document).ready(function() {
-
-    //Create avatars
-    function createAvatar(avatar, place) {
-        var card = $(`<div id="character-${avatar.id}">`); 
-        card.addClass("avatar character thumbnail");
-        card.data('data',avatar);
-        card.append("<div class = 'avatar-name'>" + avatar.name + "</div>");
-        card.append("<img src='assets/images/" + avatar.picture + "'></img>");
-        card.append("<div class = 'avatar-hp'>" + avatar.hp + "</div>");
-        place.append(card);   
+  //OnClick event to select my character from the list of avatars
+  $('.avatar').click(function() {
+    if (!myAvatar) {
+      myAvatar = $(this).data('data');
+      $(this)
+        .removeClass('character')
+        .addClass('selected-card');
+      $(this).appendTo($('.mySpace'));
+    } else {
+      defender = $(this).data('data');
+      $(this)
+        .removeClass('character')
+        .addClass('enemy-card');
+      $(this).appendTo('.defender-area');
     }
-
-    //Populate character's list
-    $.each(avatarList, function(i, element) {
-        createAvatar(element, $(".characters"));
-    });
-    //OnClick event to select my character from the list of avatars
-    $('.avatar').click(function(){
-        if(!myAvatar){
-            myAvatar = $(this).data('data');
-            $(this).removeClass('character').addClass('selected-card');
-            $(this).appendTo($('.mySpace'));
+  });
+  $('#attackBtn').click(function() {
+    var remainingDefenders = 3;
+    if (remainingDefenders > 0) {
+      myAvatar.attack(defender);
+      refreshHP();
+      if (myAvatar.hp <= 0) {
+        $('#attack-detail').text('You have been defeated...GAME OVER!');
+      } else {
+        if (defender.hp <= 0) {
+          $('.enemy-card').remove();
+          defender = null;
+          remainingDefenders--;
+        } else {
+          $('#attack-detail').html(
+            'You attacked ' +
+              defender.name +
+              ' for ' +
+              myAvatar.attackPower +
+              ' damage.</br>'
+          );
+          $('#attack-detail').append(
+            defender.name +
+              ' attacked you back for ' +
+              defender.counterAttackPower +
+              ' damage.'
+          );
         }
-        else {
-            defender = $(this).data('data');
-            $(this).removeClass('character').addClass('enemy-card');
-            $(this).appendTo(".defender-area");
-        }
-    });
-    $('#attackBtn').click(function (){
-        var remainingDefenders = 3;
-        if (remainingDefenders > 0) {
-            myAvatar.attack(defender);
-            refreshHP();
-            if (myAvatar.hp <= 0 ) {
-                $('#attack-detail').text('You have been defeated...GAME OVER!');
-            }
-            else{
-                if (defender.hp <= 0) {
-                    $('.enemy-card').remove();
-                    defender = null;
-                    remainingDefenders --;
-                }
-                else{
-                    $('#attack-detail').html('You attacked ' + defender.name + ' for ' + myAvatar.attackPower + ' damage.</br>');
-                    $('#attack-detail').append(defender.name + ' attacked you back for ' + defender.counterAttackPower + ' damage.')   
-                }
-            }
-        }
-        else{
-            $('#attack-detail').text('You Won!...GAME OVER!');
-        }
-    });
-    $('#restartBtn').click(function () {
-        location.reload();
-    }) 
+      }
+    } else {
+      $('#attack-detail').text('You Won!...GAME OVER!');
+    }
+  });
+  $('#restartBtn').click(function() {
+    location.reload();
+  });
 });
-

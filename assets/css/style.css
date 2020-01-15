@@ -1,57 +1,57 @@
+body,
+html {
+  height: 100%;
+}
+.bg-dark {
+  background-color: #0c0c13 !important;
+}
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../images/x-wing.jpg');
 
-body{
-	background-image: url(../images/x-wing.jpg);
-	background-size: cover;
-	background-color: #312c49;
-}
-.page-header{
-	margin: 0;
-	padding-bottom: 0;
-	background: #000;
-	opacity: 0.7;
-}
-.playground{
-	width: 100%;
-}
-.avatar{
-	width: 100px;
-	height: 150px;
-	background: #000;
-	color: white;
-	display: inline-block;
-	margin: 10px;
-	border: 2px solid #fff;
-	font-size: 12px;
-}
-.avatar img{
-	height: 100px;
-}
-.avatar:hover{
-	cursor: pointer;
-	transition: background-color .2 ease-in-out;
-	background-color: #fff;
-	transition: color .2 ease-in-out;
-	color: #000;
-	transition: border .2 ease-in-out;
-	border-color: #000;
-}
-.avatar-name, .avatar-hp{
-	margin: 0 auto;
+  /* Set a specific height */
+  height: 50%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
-.selected-card{
-	background-color: #2f8636;
-	color: #fff;
+/* .avatar {
+  width: 100px;
+  height: 150px;
+  background: #000;
+  color: white;
+  display: inline-block;
+  margin: 10px;
+  border: 2px solid #fff;
+  font-size: 12px;
 }
-.enemy-card{
-	background-color: #af2020;
-	color: #fff;
+.avatar img {
+  height: 100px;
 }
-#attackBtn, #restartBtn{
-	width: 100px;
-	margin: 10px;
+.avatar:hover {
+  cursor: pointer;
+  transition: background-color 0.2 ease-in-out;
+  background-color: #fff;
+  transition: color 0.2 ease-in-out;
+  color: #000;
+  transition: border 0.2 ease-in-out;
+  border-color: #000;
 }
-#attack-detail{
-	background: #00000086;
-	color: #fff;
+.avatar-name,
+.avatar-hp {
+  margin: 0 auto;
 }
+
+.selected-card {
+  background-color: #2f8636;
+  color: #fff;
+}
+.enemy-card {
+  background-color: #af2020;
+  color: #fff;
+} */
