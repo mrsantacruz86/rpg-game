@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Star Wars RPG!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <link rel="icon" href="assets/images/logo.jpg" />
     <!-- Latest compiled and minified CSS -->
     <link
@@ -23,46 +26,90 @@
     />
   </head>
 
-  <body>
-    <div class="container-fluid bg-dark">
-      <!-- <div class="page-header"> -->
-      <div class="row">
-        <img src="assets/images/logo.svg" height="100px" alt="Star Wars RPG!" />
+  <body class="text-center">
+    <!-- <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <div class="page-header">
+        <header class="masthead mb-auto">
+          <img
+            src="assets/images/logo.svg"
+            height="100px"
+            alt="Star Wars RPG!"
+          />
+          <h3 class="masthead-brand">RPG</h3>
+        </header>
       </div>
-      <!-- </div> -->
 
-      <div class="hero-image" id="playground">
-        <div class="col-md-6">
-          <h3>My Character</h3>
-          <div class="mySpace"></div>
+      <div class="hero-image w-100 h-100" id="playground">
+        <div class="text-light" height="100%">
+          <div class="row">
+            <div class="col-md-6">
+              <h3>My Character</h3>
+              <div class="mySpace"></div>
 
-          <h3>Enemies available to attack</h3>
-          <div class="characters"></div>
-        </div>
+              <h3>Enemies available to attack</h3>
+              <div class="characters"></div>
+            </div>
 
-        <div class="col-md-6">
-          <h3>Fight Section</h3>
-          <button
-            type="button"
-            class="btn btn-large btn-block btn-danger"
-            id="attackBtn"
-          >
-            Attack!
-          </button>
+            <div class="col-md-6">
+              <h3>Fight Section</h3>
+              <button
+                type="button"
+                class="btn btn-large btn-block btn-danger"
+                id="attackBtn"
+              >
+                Attack!
+              </button>
 
-          <div class="defender-area"></div>
-          <p id="attack-detail"></p>
+              <div class="defender-area"></div>
+              <p id="attack-detail"></p>
 
-          <button
-            hidden
-            type="button"
-            class="btn btn-large btn-block btn-primary"
-            id="restartBtn"
-          >
-            Restart!
-          </button>
+              <button
+                hidden
+                type="button"
+                class="btn btn-large btn-block btn-primary"
+                id="restartBtn"
+              >
+                Restart!
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+    </div> -->
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Cover</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Cover your page.</h1>
+        <p class="lead">
+          Cover is a one-page template for building simple and beautiful home
+          pages. Download, edit the text, and add your own fullscreen background
+          photo to make it your own.
+        </p>
+        <p class="lead">
+          <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+        </p>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>
+            Cover template for
+            <a href="https://getbootstrap.com/">Bootstrap</a>, by
+            <a href="https://twitter.com/mdo">@mdo</a>.
+          </p>
+        </div>
+      </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)"></script>
