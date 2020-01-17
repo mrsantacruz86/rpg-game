@@ -5,19 +5,55 @@ html {
 .bg-dark {
   background-color: #0c0c13 !important;
 }
-.hero-image {
+.cover-container {
   /*Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('../images/lightsabercrop.webp');
-
-  /* Set a specific height */
-  height: 100% !important;
-
-  /* Position and center the image to scale nicely on all screens */
+    url("../images/lightsabercrop.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* position: relative;
+}
+
+header > img {
+  height: 6rem;
+}
+
+.avatar {
+  border-radius: 4rem;
+  border-width: 0.25rem !important;
+  border-color: #ffe81f !important;
+}
+.avatar-info {
+  top: auto;
+  background-color: #000000;
+  height: 8rem;
+  bottom: 0;
+  border-radius: 0 0 4rem 4rem;
+  padding-bottom: 0;
+}
+
+.avatar-thumbnail {
+  border-radius: 2rem;
+  border-width: 0.25rem !important;
+  border-color: #ffe81f !important;
+}
+.avatar-thumbnail:hover {
+  cursor: pointer;
+  /* border-width: 0.5rem !important; */
+  border-color: #ff411f !important;
+}
+
+.avatar-thumbnail-info {
+  top: auto;
+  background-color: #00000080;
+  height: 4rem;
+  bottom: 0;
+  border-radius: 0 0 2rem 2rem;
+}
+
+.avatar-thumbnail img {
+}
+.characters {
 }
 
 /* .avatar {

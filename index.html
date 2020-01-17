@@ -26,87 +26,64 @@
     />
   </head>
 
-  <body class="text-center">
-    <!-- <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <div class="page-header">
-        <header class="masthead mb-auto">
-          <img
-            src="assets/images/logo.svg"
-            height="100px"
-            alt="Star Wars RPG!"
-          />
-          <h3 class="masthead-brand">RPG</h3>
-        </header>
-      </div>
-
-      <div class="hero-image w-100 h-100" id="playground">
-        <div class="text-light" height="100%">
-          <div class="row">
-            <div class="col-md-6">
-              <h3>My Character</h3>
-              <div class="mySpace"></div>
-
-              <h3>Enemies available to attack</h3>
-              <div class="characters"></div>
-            </div>
-
-            <div class="col-md-6">
-              <h3>Fight Section</h3>
-              <button
-                type="button"
-                class="btn btn-large btn-block btn-danger"
-                id="attackBtn"
-              >
-                Attack!
-              </button>
-
-              <div class="defender-area"></div>
-              <p id="attack-detail"></p>
-
-              <button
-                hidden
-                type="button"
-                class="btn btn-large btn-block btn-primary"
-                id="restartBtn"
-              >
-                Restart!
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <header class="masthead mb-auto">
-        <div class="inner">
-          <h3 class="masthead-brand">Cover</h3>
-          <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">Contact</a>
-          </nav>
-        </div>
+  <body class="bg-dark">
+    <div
+      class="cover-container d-flex w-100 h-100 mx-auto flex-column text-light"
+    >
+      <header class="masthead mb-auto bg-dark ">
+        <img
+          class="float-left px-3"
+          src="assets/images/logo.svg"
+          alt="Star Wars RPG!"
+        />
       </header>
 
-      <main role="main" class="inner cover">
-        <h1 class="cover-heading">Cover your page.</h1>
-        <p class="lead">
-          Cover is a one-page template for building simple and beautiful home
-          pages. Download, edit the text, and add your own fullscreen background
-          photo to make it your own.
-        </p>
-        <p class="lead">
-          <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-        </p>
+      <main role="main" class="inner">
+        <div class="row mt-3">
+          <section class="col-md-4 col-sm-12 text-center d-flex">
+            <div class="avatar card text-white flex-grow-1 mx-3">
+              <img
+                src="./assets/images/luke.jpg"
+                class="avatar card-img"
+                alt="Avatar"
+              />
+              <div class="avatar-info card-img-overlay">
+                <h5 class="card-title mt-auto">Luke Skywalker</h5>
+                <p class="card-text">120</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="col-md-4 col-sm-12 text-center">
+            <h1 class="cover-heading">Cover your page.</h1>
+          </section>
+
+          <section class="col-md-4 col-sm-12 text-center d-flex">
+            <div class="avatar card text-white flex-grow-1 mx-3">
+              <img
+                src="./assets/images/maul.jpg"
+                class="avatar card-img"
+                alt="Avatar"
+              />
+              <div class="avatar-info card-img-overlay">
+                <h5 class="card-title mt-auto">Luke Skywalker</h5>
+                <p class="card-text">120</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="container">
+          <section class="d-flex flex-row justify-content-around">
+            <div class="characters text-center text-white"></div>
+          </section>
+        </div>
       </main>
 
-      <footer class="mastfoot mt-auto">
+      <footer class="mastfoot mt-auto px-3">
         <div class="inner">
           <p>
-            Cover template for
-            <a href="https://getbootstrap.com/">Bootstrap</a>, by
-            <a href="https://twitter.com/mdo">@mdo</a>.
+            &copy; 2020 Nelson Diaz
           </p>
         </div>
       </footer>
