@@ -40,42 +40,33 @@
 
       <main role="main" class="inner">
         <div class="row mt-3">
-          <section class="col-md-4 col-sm-12 text-center d-flex">
-            <div class="avatar card text-white flex-grow-1 mx-3">
-              <img
-                src="./assets/images/luke.jpg"
-                class="avatar card-img"
-                alt="Avatar"
-              />
-              <div class="avatar-info card-img-overlay">
-                <h5 class="card-title mt-auto">Luke Skywalker</h5>
-                <p class="card-text">120</p>
-              </div>
-            </div>
+          <section
+            id="myCharacter"
+            class="col-md-4 col-sm-12 text-center d-flex"
+          >
+            <!-- My Selected Character card goes here... -->
           </section>
 
           <section class="col-md-4 col-sm-12 text-center">
-            <h1 class="cover-heading">Cover your page.</h1>
+            <h1 class="cover-heading">Fight!</h1>
+            <button id="attack-btn" class="btn btn-danger btn-lg">
+              Attack
+            </button>
+            <button id="restart-btn" class="btn btn-secondary btn-lg">
+              Restart
+            </button>
           </section>
 
-          <section class="col-md-4 col-sm-12 text-center d-flex">
-            <div class="avatar card text-white flex-grow-1 mx-3">
-              <img
-                src="./assets/images/maul.jpg"
-                class="avatar card-img"
-                alt="Avatar"
-              />
-              <div class="avatar-info card-img-overlay">
-                <h5 class="card-title mt-auto">Luke Skywalker</h5>
-                <p class="card-text">120</p>
-              </div>
-            </div>
+          <section id="opponent" class="col-md-4 col-sm-12 text-center d-flex">
+            <!-- My opponent card goes here... -->
           </section>
         </div>
 
         <div class="container">
           <section class="d-flex flex-row justify-content-around">
-            <div class="characters text-center text-white"></div>
+            <div id="characters" class="characters text-center text-white">
+              <!-- The list of available characters goes here... -->
+            </div>
           </section>
         </div>
       </main>

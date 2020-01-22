@@ -38,7 +38,7 @@ const characterList = [
   }
 ];
 
-const game = {
+var game = {
   playing: false,
   selectedCharacter: {},
   selectedOpponent: {},
@@ -54,43 +54,88 @@ function restartGame() {
     characterList: [...characterList]
   };
   renderSelectedCharacters();
+  renderCharacterList();
 }
 
 function renderSelectedCharacters() {
-  if (!game.selectedCharacter) {
+  // code to render selected character
+  if (!game.selectedCharacter || !game.selectedCharacter.name) {
+    $("#myCharacter").empty();
     console.log("No Character was selected yet!");
   } else {
-    console.log(game.selectedCharacter);
+    var $myCharacter = $(
+      `<div class="avatar card text-white flex-grow-1 mx-3">`
+    );
+    $myCharacter.append(
+      $(
+        `<img src="./assets/images/${game.selectedCharacter.picture}" class="avatar card-img" alt="Avatar"/>`
+      )
+    );
+    let $characterInfo = $(`<div class="avatar-info card-img-overlay">`);
+    $characterInfo.append(
+      $(`<h5 class="card-title mt-auto">${game.selectedCharacter.name}</h5>`)
+    );
+    $characterInfo.append(
+      $(`<p class="card-text">${game.selectedCharacter.hp}</p>`)
+    );
+    $myCharacter.append($characterInfo);
+    $("#myCharacter")
+      .empty()
+      .append($myCharacter);
   }
-  if (!game.selectedOpponent) {
+
+  // code to render selected opponent
+  if (!game.selectedOpponent || !game.selectedOpponent.name) {
+    $("#opponent").empty();
     console.log("No Opponent was selected yet!");
   } else {
-    console.log(game.selectedOpponent);
+    var $opponent = $(`<div class="avatar card text-white flex-grow-1 mx-3">`);
+    $opponent.append(
+      $(
+        `<img src="./assets/images/${game.selectedOpponent.picture}" class="avatar card-img" alt="Avatar"/>`
+      )
+    );
+    let $characterInfo = $(`<div class="avatar-info card-img-overlay">`);
+    $characterInfo.append(
+      $(`<h5 class="card-title mt-auto">${game.selectedOpponent.name}</h5>`)
+    );
+    $characterInfo.append(
+      $(`<p class="card-text">${game.selectedOpponent.hp}</p>`)
+    );
+    $opponent.append($characterInfo);
+    $("#opponent")
+      .empty()
+      .append($opponent);
   }
-  console.log(game);
+  // console.log(game);
 }
 
 // Select Character
 function selectCharacter(id) {
-  game.selectedCharacter = characterList.filter(item => item.id === id)[0];
-  game.characterList = game.characterList.filter(item => item.id !== id);
+  if (!game.selectedCharacter || !game.selectedCharacter.id) {
+    game.selectedCharacter = characterList.filter(item => item.id === id)[0];
+    game.characterList = game.characterList.filter(item => item.id !== id);
+  }
+  if (
+    game.selectedCharacter.id !== id &&
+    (!game.selectedOpponent.id || game.selectedOpponent.hp <= 0)
+  ) {
+    game.selectedOpponent = characterList.filter(item => item.id === id)[0];
+    game.characterList = game.characterList.filter(item => item.id !== id);
+  }
   renderSelectedCharacters();
   renderCharacterList();
 }
 
 // Select Opponent
-function selectOponent(id) {
-  game.selectedOpponent = characterList.filter(item => item.id === id)[0];
-  game.characterList = game.characterList.filter(item => item.id !== id);
-  renderSelectedCharacters();
-  renderCharacterList();
-}
+
 //Render the list of Character cards
 const renderCharacterList = () => {
-  $(".avatar-thumbnail").remove();
+  $("#characters").empty();
   game.characterList.map((character, index) => {
     var card = $(`<div id="character-${character.id}">`);
     card.addClass("avatar-thumbnail card mx-3");
+    card.data("id", character.id);
     var thumbnailInfo = $(
       '<div class="avatar-thumbnail-info card-img-overlay">'
     );
@@ -101,7 +146,7 @@ const renderCharacterList = () => {
       `<img src="assets/images/${character.picture}" class="avatar-thumbnail card-img">`
     );
     card.append(thumbnailInfo);
-    $(".characters").append(card);
+    $("#characters").append(card);
   });
 };
 
@@ -111,74 +156,48 @@ function attack() {
     return console.log("No Character or Oponent Selected");
   }
 
+  if (game.selectedCharacter.hp <= 0) {
+    console.log("You are dead!");
+  }
+
+  if (game.selectedOpponent.hp <= 0) {
+    console.log("You won the fight");
+    game.selectedOpponent = {};
+  }
+
   if (game.selectedCharacter.hp > 0) {
     game.selectedOpponent.hp -= game.selectedCharacter.attackPower;
     game.selectedCharacter.attackPower += game.selectedCharacter.powerIncrement;
     game.selectedCharacter.hp -= game.selectedOpponent.attackPower;
     game.selectedOpponent.attackPower += game.selectedOpponent.powerIncrement;
   }
-  if (game.selectedCharacter.hp <= 0) {
-    console.log("You are dead!");
-  }
-  if (game.selectedOpponent.hp <= 0) {
-    console.log("You won the fight");
-    game.selectedOpponent = {};
-  }
   renderSelectedCharacters();
   renderCharacterList();
-  return console.log(game.selectedCharacter, game.selectedOpponent);
 }
 
 $(document).ready(function() {
+  // Render the list of characters
+  renderCharacterList();
   //OnClick event to select my character from the list of avatars
-  $(".avatar").click(function() {
-    if (!myAvatar) {
-      myAvatar = $(this).data("data");
-      $(this)
-        .removeClass("character")
-        .addClass("selected-card");
-      $(this).appendTo($(".mySpace"));
-    } else {
-      defender = $(this).data("data");
-      $(this)
-        .removeClass("character")
-        .addClass("enemy-card");
-      $(this).appendTo(".defender-area");
-    }
+  $(".characters").on("click", "div.avatar-thumbnail", function() {
+    console.log($(this).data("id"));
+    selectCharacter($(this).data("id"));
   });
-  $("#attackBtn").click(function() {
-    var remainingDefenders = 3;
-    if (remainingDefenders > 0) {
-      myAvatar.attack(defender);
-      refreshHP();
-      if (myAvatar.hp <= 0) {
-        $("#attack-detail").text("You have been defeated...GAME OVER!");
+
+  $("#attack-btn").click(function() {
+    if (game.selectedCharacter.hp <= 0) {
+      $("#attack-detail").text("You have been defeated...GAME OVER!");
+    } else {
+      if (game.selectedOpponent.hp <= 0) {
+        game.selectedOpponent = {};
+        renderSelectedCharacters();
       } else {
-        if (defender.hp <= 0) {
-          $(".enemy-card").remove();
-          defender = null;
-          remainingDefenders--;
-        } else {
-          $("#attack-detail").html(
-            "You attacked " +
-              defender.name +
-              " for " +
-              myAvatar.attackPower +
-              " damage.</br>"
-          );
-          $("#attack-detail").append(
-            defender.name +
-              " attacked you back for " +
-              defender.counterAttackPower +
-              " damage."
-          );
-        }
+        attack();
       }
-    } else {
-      $("#attack-detail").text("You Won!...GAME OVER!");
     }
   });
-  $("#restartBtn").click(function() {
-    location.reload();
+
+  $("#restart-btn").click(function() {
+    restartGame();
   });
 });
